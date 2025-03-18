@@ -1,17 +1,47 @@
 version: "3.8"
 
 services:
+  frontend:
+    build:
+      context: ./front # Dirección al directorio del frontend
+    ports:
+      - "3001:3000" # Asigna el puerto 3001 en tu máquina al 3000 del contenedor
+    networks:
+      - app-network
+    depends_on:
+      - backend # Espera a que el backend esté listo
+
   backend:
     build:
-      context: ./back # Dirección al directorio del back-end
+      context: ./back # Dirección al directorio del backend
     ports:
       - "3000:3000" # Asigna el puerto 3000 en tu máquina al 3000 del contenedor
     networks:
       - app-network
+    depends_on:
+      - db # Espera a que la base de datos esté lista
     environment:
-      - DATABASE_URL=postgresql://postgres.rvkyjpmbtxreuiqibtqu:Administrador123@aws-0-us-east-2.pooler.supabase.com:5432/postgres
-      - JWT_SECRET=Admin123
+      - DATABASE_URL=${DATABASE_URL}
+      - JWT_SECRET=${JWT_SECRET}
+
+  db:
+    image: postgres:15
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "${SUPABASE_PASSWORD}"
+      POSTGRES_DB: "demo_cementerio"
+    ports:
+      - "5432:5432"
+    networks:
+      - app-network
+    volumes:
+      - pgdata:/var/lib/postgresql/data
 
 networks:
   app-network:
     driver: bridge
+
+volumes:
+  pgdata:
