@@ -48,7 +48,4 @@ Los usuarios pueden buscar entre cientos de registros de inhumados, filtrando po
 Valle de Paz es una solución integral para la gestión de cementerios, facilitando la administración de registros y brindando una experiencia accesible para los familiares de los fallecidos. Su integración con múltiples tecnologías permite un funcionamiento eficiente, seguro y escalable.
 
 
-## 📩 Contacto
 
-📧 **Email:** JoakoDelgado2013@gmail.com  
-🔗 **LinkedIn:** [Joaquín D. Delgado](https://www.linkedin.com/in/joaquin-d-delgado-312125351/)
