@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  frontend:
+    build:
+      context: ./front # Dirección al directorio del front-end
+    ports:
+      - "3001:3000" # Asigna el puerto 3001 en tu máquina al 3000 del contenedor
+    networks:
+      - app-network
+
+  backend:
+    build:
+      context: ./back # Dirección al directorio del back-end
+    ports:
+      - "3000:3000" # Asigna el puerto 3000 en tu máquina al 3000 del contenedor
+    networks:
+      - app-network
+    environment:
+      - DATABASE_URL=postgresql://postgres.rvkyjpmbtxreuiqibtqu:Administrador123@aws-0-us-east-2.pooler.supabase.com:5432/postgres
+      - JWT_SECRET=Admin123
+
+networks:
+  app-network:
+    driver: bridge
