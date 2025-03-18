@@ -1,14 +1,6 @@
 version: "3.8"
 
 services:
-  frontend:
-    build:
-      context: ./front # Dirección al directorio del front-end
-    ports:
-      - "3001:3000" # Asigna el puerto 3001 en tu máquina al 3000 del contenedor
-    networks:
-      - app-network
-
   backend:
     build:
       context: ./back # Dirección al directorio del back-end
